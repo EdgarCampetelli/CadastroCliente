@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping
 
-public class Controller {
+public class ClienteController {
 
     @GetMapping("/boasvindas")
     public String boasVindas(){
         return "Primeira mensagem";
     }
+
 
 }
