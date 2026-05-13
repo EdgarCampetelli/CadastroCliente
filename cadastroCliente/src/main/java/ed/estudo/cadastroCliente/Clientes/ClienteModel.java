@@ -1,6 +1,9 @@
-package ed.estudo.cadastroCliente;
+package ed.estudo.cadastroCliente.Clientes;
 
+import ed.estudo.cadastroCliente.Servicos.ServicosModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 //Transforma uma class em entidade no banco de dados
 @Entity
@@ -12,6 +15,9 @@ public class ClienteModel {
     private String nome;
     private String email;
     private int idade;
+    @ManyToOne // MUITOS clientes para um servico
+    @JoinColumn(name = "servicos_id") // Foreing Key
+    private ServicosModel servicos;
 
     public ClienteModel() {
     }
