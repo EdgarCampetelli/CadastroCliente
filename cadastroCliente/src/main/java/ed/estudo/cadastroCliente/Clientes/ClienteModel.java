@@ -21,6 +21,8 @@ public class ClienteModel {
     private Long id;
 
     private String nome;
+
+    @Column(unique = true)
     private String email;
     private int idade;
 
