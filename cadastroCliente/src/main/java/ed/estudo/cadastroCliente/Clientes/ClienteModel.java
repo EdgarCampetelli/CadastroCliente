@@ -4,10 +4,7 @@ import ed.estudo.cadastroCliente.Servicos.ServicosModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 //Transforma uma class em entidade no banco de dados
 @Entity
