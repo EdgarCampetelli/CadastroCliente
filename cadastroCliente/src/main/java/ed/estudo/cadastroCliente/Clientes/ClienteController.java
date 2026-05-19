@@ -33,8 +33,8 @@ public class ClienteController {
     public String updateClienteID(){return "Altera Cliente por ID";}
 
     //DELETE CLIENTE
-    @DeleteMapping("/deleteID")
-    public String deleteClienteID(){return "Deleta Cliente por ID";}
+    @DeleteMapping("/delete/{id}")
+    public void deleteClienteID(@PathVariable Long id){ clienteService.deleteClienteID(id);}
 
     //SEARCH CLIENTE
     @GetMapping("/read/{id}")

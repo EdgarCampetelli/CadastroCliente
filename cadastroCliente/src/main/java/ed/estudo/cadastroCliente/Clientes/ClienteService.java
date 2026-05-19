@@ -30,4 +30,14 @@ public class ClienteService {
     public ClienteModel criateCliente(ClienteModel cliente){
         return clienteRepository.save(cliente);
     }
+
+    //Delete
+    public void deleteClienteID(Long id){
+        clienteRepository.deleteById(id);
+    }
+
+    //UPDATE
+//    public ClienteModel updateCliente(ClienteModel clienteModel){
+//        return
+//    }
 }
