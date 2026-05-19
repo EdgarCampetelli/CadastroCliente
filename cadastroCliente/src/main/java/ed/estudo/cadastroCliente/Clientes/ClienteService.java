@@ -25,4 +25,9 @@ public class ClienteService {
         Optional<ClienteModel> clienteModel = clienteRepository.findById(id);
         return clienteModel.orElse(null);
     }
+
+    //Criar Ninja
+    public ClienteModel criateCliente(ClienteModel cliente){
+        return clienteRepository.save(cliente);
+    }
 }
