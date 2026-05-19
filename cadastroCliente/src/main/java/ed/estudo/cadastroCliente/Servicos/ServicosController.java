@@ -16,8 +16,10 @@ public class ServicosController {
     @GetMapping("/default")
     public String linkDefault(){ return "Page Default"; }
 
-    @PostMapping("/creat")
-    public String creatServico(){return "Servico Criado";}
+    @PostMapping("/create")
+    public ServicosModel creatServico(@RequestBody ServicosModel servicosModel){
+        return servicosService.creatServico(servicosModel);
+    }
 
     //READ Servico
     @GetMapping("/readAll")
@@ -28,8 +30,8 @@ public class ServicosController {
     public String updateServicoID(){return "Altera Servico por ID";}
 
     //DELETE Servico
-    @DeleteMapping("/deleteID")
-    public String deleteServicoID(){return "Deleta Servico por ID";}
+    @DeleteMapping("/delete/{id}")
+    public void deleteServicoID(@PathVariable Long id){ servicosService.deleteServicoID(id);}
 
     //SEARCH Servico
     @GetMapping("/read/{id}")

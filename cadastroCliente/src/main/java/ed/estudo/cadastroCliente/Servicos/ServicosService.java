@@ -1,6 +1,7 @@
 package ed.estudo.cadastroCliente.Servicos;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,5 +21,13 @@ public class ServicosService {
     public ServicosModel readServicoID(Long id){
         Optional<ServicosModel> servicosModel = servicosRepository.findById(id);
         return servicosModel.orElse(null);
+    }
+
+    public ServicosModel creatServico(ServicosModel servicosModel){
+        return servicosRepository.save(servicosModel);
+    }
+
+    public void deleteServicoID(Long id){
+        servicosRepository.deleteById(id);
     }
 }
