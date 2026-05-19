@@ -2,8 +2,8 @@ package ed.estudo.cadastroCliente.Clientes;
 
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping
+@RestController //determina que a funcao e um controller
+@RequestMapping("cliente")
 public class ClienteController {
 
     @GetMapping("/boasvindas")
@@ -12,22 +12,22 @@ public class ClienteController {
     }
 
     //CREATE CLIENTE
-    @PostMapping("/createdCliente")
+    @PostMapping("/creat")
     public String criarCliente(){return "Cliente Criado";}
 
     //READ CLIENTE
-    @GetMapping("/readAllCliente")
+    @GetMapping("/readAll")
     public String readAllCliente(){return "Mostrar TODOS os Clientes";}
 
     //UPDATE CLIENTE
-    @PutMapping("/updateCliente")
+    @PutMapping("/updateID")
     public String updateClienteID(){return "Altera Cliente por ID";}
 
     //DELETE CLIENTE
-    @DeleteMapping("/deleteCliente")
+    @DeleteMapping("/deleteID")
     public String deleteClienteID(){return "Deleta Cliente por ID";}
 
     //SEARCH CLIENTE
-    @GetMapping("/readClienteID")
+    @GetMapping("/readID")
     public String readClienteID(){return "Mostrar Cliente por ID";}
 }
