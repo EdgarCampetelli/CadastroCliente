@@ -3,6 +3,7 @@ package ed.estudo.cadastroCliente.Servicos;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServicosService {
@@ -14,5 +15,10 @@ public class ServicosService {
 
     public List<ServicosModel> readAllServico(){
         return servicosRepository.findAll();
+    }
+
+    public ServicosModel readServicoID(Long id){
+        Optional<ServicosModel> servicosModel = servicosRepository.findById(id);
+        return servicosModel.orElse(null);
     }
 }

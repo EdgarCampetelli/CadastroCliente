@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController //determina que a funcao e um controller
-@RequestMapping("/cliente")
+@RequestMapping("/clientes")
 public class ClienteController {
 
     //injetando Service
@@ -36,6 +36,6 @@ public class ClienteController {
     public String deleteClienteID(){return "Deleta Cliente por ID";}
 
     //SEARCH CLIENTE
-    @GetMapping("/readID")
-    public String readClienteID(){return "Mostrar Cliente por ID";}
+    @GetMapping("/read/{id}")
+    public ClienteModel readClienteID(@PathVariable Long id){return clienteService.readClienteID(id);}
 }

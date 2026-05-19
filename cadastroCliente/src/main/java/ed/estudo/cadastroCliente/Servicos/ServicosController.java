@@ -32,6 +32,6 @@ public class ServicosController {
     public String deleteServicoID(){return "Deleta Servico por ID";}
 
     //SEARCH Servico
-    @GetMapping("/readID")
-    public String readServicoID(){return "Mostrar Servico por ID";}
+    @GetMapping("/read/{id}")
+    public ServicosModel readServicoID(@PathVariable Long id){return servicosService.readServicoID(id);}
 }
