@@ -37,7 +37,11 @@ public class ClienteService {
     }
 
     //UPDATE
-//    public ClienteModel updateCliente(ClienteModel clienteModel){
-//        return
-//    }
+    public ClienteModel updateClienteId(Long id, ClienteModel clienteModel){
+        if (clienteRepository.existsById(id)){
+             clienteModel.setId(id);
+            return clienteRepository.save(clienteModel);
+        }
+        return null;
+    }
 }

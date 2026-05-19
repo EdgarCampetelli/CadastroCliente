@@ -29,8 +29,8 @@ public class ClienteController {
     public List<ClienteModel> readAllCliente(){return clienteService.readAllCliente();}
 
     //UPDATE CLIENTE
-    @PutMapping("/updateID")
-    public String updateClienteID(){return "Altera Cliente por ID";}
+    @PutMapping("/update/{id}")
+    public ClienteModel updateClienteID(@PathVariable Long id, @RequestBody ClienteModel clienteModel ){return clienteService.updateClienteId(id,clienteModel);}
 
     //DELETE CLIENTE
     @DeleteMapping("/delete/{id}")
