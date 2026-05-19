@@ -1,5 +1,6 @@
 package ed.estudo.cadastroCliente.Servicos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import ed.estudo.cadastroCliente.Clientes.ClienteModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ public class ServicosModel {
     private String dificuldade;
 
     @OneToMany(mappedBy = "servicos") // Um servico para MUITOS clientes
+    @JsonIgnore
     private List<ClienteModel> clientes ;
 
 

@@ -2,9 +2,16 @@ package ed.estudo.cadastroCliente.Servicos;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("servicos")
+@RequestMapping("/servicos")
 public class ServicosController {
+
+    private ServicosService servicosService;
+    public ServicosController(ServicosService servicosService) {
+        this.servicosService = servicosService;
+    }
 
     @GetMapping("/default")
     public String linkDefault(){ return "Page Default"; }
@@ -14,7 +21,7 @@ public class ServicosController {
 
     //READ Servico
     @GetMapping("/readAll")
-    public String readAllServico(){return "Mostrar TODOS os Servico";}
+    public List<ServicosModel> readAllServico(){return servicosService.readAllServico();}
 
     //UPDATE Servico
     @PutMapping("/updateID")
