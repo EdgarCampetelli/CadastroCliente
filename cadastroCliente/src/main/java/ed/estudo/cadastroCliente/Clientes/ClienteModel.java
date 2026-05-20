@@ -22,7 +22,7 @@ public class ClienteModel {
     @Column(unique = true)
     private String email;
 
-    private int idade;
+    private Integer idade;
 
     private Integer phone;
 
