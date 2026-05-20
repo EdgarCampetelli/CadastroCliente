@@ -17,17 +17,17 @@ public class ServicosController {
     public String linkDefault(){ return "Page Default"; }
 
     @PostMapping("/create")
-    public ServicosModel creatServico(@RequestBody ServicosModel servicosModel){
-        return servicosService.creatServico(servicosModel);
+    public ServicosDTO creatServico(@RequestBody ServicosDTO servicosDTO){
+        return servicosService.creatServico(servicosDTO);
     }
 
     //READ Servico
     @GetMapping("/readAll")
-    public List<ServicosModel> readAllServico(){return servicosService.readAllServico();}
+    public List<ServicosDTO> readAllServico(){return servicosService.readAllServico();}
 
     //UPDATE Servico
-    @PutMapping("/updateID")
-    public String updateServicoID(){return "Altera Servico por ID";}
+    @PutMapping("/update/{id}")
+    public ServicosDTO updateServicoID(@PathVariable Long id, @RequestBody ServicosDTO servicosDTO){return servicosService.updateServicoID(id, servicosDTO);}
 
     //DELETE Servico
     @DeleteMapping("/delete/{id}")
@@ -35,5 +35,5 @@ public class ServicosController {
 
     //SEARCH Servico
     @GetMapping("/read/{id}")
-    public ServicosModel readServicoID(@PathVariable Long id){return servicosService.readServicoID(id);}
+    public ServicosDTO readServicoID(@PathVariable Long id){return servicosService.readServicoID(id);}
 }
