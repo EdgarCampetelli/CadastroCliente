@@ -20,8 +20,8 @@ public class ServicosMapper {
         ServicosDTO servicosDTO = new ServicosDTO();
 
         servicosDTO.setId(servicosModel.getId());
-        servicosDTO.setNome(servicosDTO.getNome());
-        servicosDTO.setClientes(servicosDTO.getClientes());
+        servicosDTO.setNome(servicosModel.getNome());
+        servicosDTO.setClientes(servicosModel.getClientes());
         servicosDTO.setDificuldade(servicosModel.getDificuldade());
 
         return servicosDTO;
