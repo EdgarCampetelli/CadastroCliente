@@ -13,7 +13,7 @@ import java.util.Optional;
 public class ClienteController {
 
     //injetando Service
-    private ClienteService clienteService;
+    private final ClienteService clienteService;
     public ClienteController(ClienteService clienteService) {
         this.clienteService = clienteService;
     }

@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 public class ClienteService {
 
     //injetando Repository
-    private ClienteRepository clienteRepository;
-    private ClienteMapper clienteMapper;
+    private final ClienteRepository clienteRepository;
+    private final ClienteMapper clienteMapper;
 
     public ClienteService(ClienteRepository clienteRepository, ClienteMapper mapper) {
         this.clienteRepository = clienteRepository;
