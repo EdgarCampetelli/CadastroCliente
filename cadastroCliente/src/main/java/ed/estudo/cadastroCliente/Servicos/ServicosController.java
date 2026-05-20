@@ -23,7 +23,7 @@ public class ServicosController {
 
     //READ Servico
     @GetMapping("/readAll")
-    public List<ServicosModel> readAllServico(){return servicosService.readAllServico();}
+    public List<ServicosDTO> readAllServico(){return servicosService.readAllServico();}
 
     //UPDATE Servico
     @PutMapping("/updateID")

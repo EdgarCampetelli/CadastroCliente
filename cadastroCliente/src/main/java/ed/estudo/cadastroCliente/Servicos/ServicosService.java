@@ -5,17 +5,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ServicosService {
 
     private ServicosRepository servicosRepository;
-    public ServicosService(ServicosRepository servicosRepository) {
+    private ServicosMapper servicosMapper;
+
+    public ServicosService(ServicosRepository servicosRepository, ServicosMapper servicosMapper) {
         this.servicosRepository = servicosRepository;
+        this.servicosMapper = servicosMapper;
     }
 
-    public List<ServicosModel> readAllServico(){
-        return servicosRepository.findAll();
+    public List<ServicosDTO> readAllServico(){
+        List<ServicosModel> servicosModel = servicosRepository.findAll();
+        return servicosModel.stream().map(servicosMapper::map).collect(Collectors.toList());
     }
 
     public ServicosModel readServicoID(Long id){
