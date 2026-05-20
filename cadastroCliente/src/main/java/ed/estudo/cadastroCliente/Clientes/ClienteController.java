@@ -22,7 +22,7 @@ public class ClienteController {
     //CREATE CLIENTE
     //@RequestBody anotation que pasa o corpo(conteudo) para a funcao, serealiza o Json para persistir os dados no banco de dados
     @PostMapping("/create")
-    public ClienteModel criateCliente(@RequestBody ClienteModel cliente){return clienteService.criateCliente(cliente);}
+    public ClienteDTO criateCliente(@RequestBody ClienteDTO cliente){return clienteService.criateCliente(cliente);}
 
     //READ CLIENTE
     @GetMapping("/readAll")

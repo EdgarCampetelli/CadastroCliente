@@ -10,8 +10,11 @@ public class ClienteService {
 
     //injetando Repository
     private ClienteRepository clienteRepository;
-    public ClienteService(ClienteRepository clienteRepository) {
+    private ClienteMapper clienteMapper;
+
+    public ClienteService(ClienteRepository clienteRepository, ClienteMapper mapper) {
         this.clienteRepository = clienteRepository;
+        this.clienteMapper = mapper;
     }
 
     //Listar Clientes
@@ -27,8 +30,10 @@ public class ClienteService {
     }
 
     //Criar Ninja
-    public ClienteModel criateCliente(ClienteModel cliente){
-        return clienteRepository.save(cliente);
+    public ClienteDTO criateCliente(ClienteDTO clienteDTO){
+        ClienteModel clienteModel = clienteMapper.map(clienteDTO);
+        clienteModel = clienteRepository.save(clienteModel);
+        return clienteMapper.map(clienteModel);
     }
 
     //Delete
