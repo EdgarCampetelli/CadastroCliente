@@ -14,11 +14,6 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    @GetMapping("/boasvindas")
-    public String boasVindas(){
-        return "Primeira mensagem";
-    }
-
     //CREATE CLIENTE
     //@RequestBody anotation que pasa o corpo(conteudo) para a funcao, serealiza o Json para persistir os dados no banco de dados
     @PostMapping("/create")
@@ -26,11 +21,11 @@ public class ClienteController {
 
     //READ CLIENTE
     @GetMapping("/readAll")
-    public List<ClienteModel> readAllCliente(){return clienteService.readAllCliente();}
+    public List<ClienteDTO> readAllCliente(){return clienteService.readAllCliente();}
 
     //UPDATE CLIENTE
     @PutMapping("/update/{id}")
-    public ClienteModel updateClienteID(@PathVariable Long id, @RequestBody ClienteModel clienteModel ){return clienteService.updateClienteId(id,clienteModel);}
+    public ClienteDTO updateClienteID(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO ){return clienteService.updateClienteId(id,clienteDTO);}
 
     //DELETE CLIENTE
     @DeleteMapping("/delete/{id}")
@@ -38,5 +33,5 @@ public class ClienteController {
 
     //SEARCH CLIENTE
     @GetMapping("/read/{id}")
-    public ClienteModel readClienteID(@PathVariable Long id){return clienteService.readClienteID(id);}
+    public ClienteDTO readClienteID(@PathVariable Long id){return clienteService.readClienteID(id);}
 }

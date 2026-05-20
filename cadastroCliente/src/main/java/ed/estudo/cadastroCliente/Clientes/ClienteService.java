@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
@@ -18,15 +19,18 @@ public class ClienteService {
     }
 
     //Listar Clientes
-    public List<ClienteModel> readAllCliente(){
-        return clienteRepository.findAll();
+    public List<ClienteDTO> readAllCliente(){
+        List<ClienteModel> clienteModel = clienteRepository.findAll();
+        return clienteModel.stream()
+                .map(clienteMapper::map)
+                .collect(Collectors.toList());
     }
 
     //Listar por ID
-    public ClienteModel readClienteID(Long id){
+    public ClienteDTO readClienteID(Long id){
         //cliente pode existir ou nao, por isso o Optional
         Optional<ClienteModel> clienteModel = clienteRepository.findById(id);
-        return clienteModel.orElse(null);
+        return clienteModel.map(clienteMapper::map).orElse(null);
     }
 
     //Criar Ninja
@@ -42,10 +46,13 @@ public class ClienteService {
     }
 
     //UPDATE
-    public ClienteModel updateClienteId(Long id, ClienteModel clienteModel){
-        if (clienteRepository.existsById(id)){
-             clienteModel.setId(id);
-            return clienteRepository.save(clienteModel);
+    public ClienteDTO updateClienteId(Long id, ClienteDTO clienteDTO){
+        Optional<ClienteModel> clienteModel = clienteRepository.findById(id);
+        if (clienteModel.isPresent()){
+            ClienteModel clienteSave = clienteMapper.map(clienteDTO);
+            clienteSave.setId(id);
+            clienteRepository.save(clienteSave);
+            return clienteMapper.map(clienteSave);
         }
         return null;
     }

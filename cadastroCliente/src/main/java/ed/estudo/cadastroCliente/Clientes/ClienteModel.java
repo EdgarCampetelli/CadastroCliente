@@ -21,9 +21,10 @@ public class ClienteModel {
 
     @Column(unique = true)
     private String email;
+
     private int idade;
 
-    private int phone;
+    private Integer phone;
 
     @ManyToOne // MUITOS clientes para um servico
     @JoinColumn(name = "servicos_id") // Foreing Key

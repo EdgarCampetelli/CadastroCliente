@@ -13,6 +13,6 @@ public class ClienteDTO {
     private String nome;
     private String email;
     private int idade;
+    private Integer phone;
     private ServicosModel servicos;
-    private  int phone;
 }
