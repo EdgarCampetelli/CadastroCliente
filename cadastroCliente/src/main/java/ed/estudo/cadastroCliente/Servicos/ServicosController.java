@@ -26,7 +26,7 @@ public class ServicosController {
 
     //READ Servico
     @GetMapping("/readAll")
-    @Operation(summary = "Rotute for read all servicos.",description = "Return Json mode servico")
+    @Operation(summary = "Rotute for read all servicos.",description = "Return Json mode servico.")
     public List<ServicosDTO> readAllServico(){return servicosService.readAllServico();}
 
     //UPDATE Servico
