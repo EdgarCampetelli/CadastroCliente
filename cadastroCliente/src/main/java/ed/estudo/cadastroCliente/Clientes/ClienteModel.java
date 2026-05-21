@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 //Transforma uma class em entidade no banco de dados
 @Entity
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data // Getter an Setters
+@ToString(exclude = "servicos")
 public class ClienteModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
