@@ -28,11 +28,7 @@ A aplicação é um sistema de gerenciamento Full Stack que permite o cadastro, 
 
 <img width="1875" height="952" alt="image" src="https://github.com/user-attachments/assets/992d1735-5bb6-44d5-881a-384d0cacdbb1" />
 <img width="1876" height="954" alt="image" src="https://github.com/user-attachments/assets/9923632b-5204-49cf-994f-72aca6180e47" />
-
-
-| Lista de Clientes | Formulário de Cadastro |
-|---|---|
-| ![Lista de Clientes](img/lista-clientes.png) | ![Cadastro](img/cadastro.png) |
+<img width="1875" height="954" alt="image" src="https://github.com/user-attachments/assets/815fe634-616e-4e3b-9f30-0d58efa76d0c" />
 
 ---
 
