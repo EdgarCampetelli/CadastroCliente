@@ -224,46 +224,31 @@
 </head>
 <body>
 
-<h1>Lista de Clientes <a th:href="@{/servicos/ui/readAll}" class="btn-navegacao">Lista de Servicos</a></h1>
+<h1>Lista de Servicos <a th:href="@{/clientes/ui/readAll}" class="btn-navegacao">Lista de Clientes</a></h1>
+
 
 <table>
     <thead>
     <tr>
         <th>Nome</th>
-        <th>Idade</th>
-        <th>Email</th>
-        <th>Telefone</th>
-        <th>Serviços</th>
+        <th>Dificuldade</th>
         <th class="acoes-header">Ações</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="cliente: ${clientes}">
-        <td th:text="${cliente.nome}"></td>
-        <td th:text="${cliente.idade}"></td>
-        <td th:text="${cliente.email}"></td>
-        <td th:text="${cliente.phone}"></td>
-        <td>
-                    <span th:if="${cliente.servicos}">
-                        <span th:text="${cliente.servicos.nome}"></span>,
-                        Dificuldade:
-                        <span th:text="${cliente.servicos.dificuldade}"></span>
-                    </span>
-            <span th:if="${cliente.servicos == null}" style="color: #e74c3c; font-style: italic;">
-                        Cliente sem Serviço!
-                    </span>
-        </td>
-
+    <tr th:each="servico: ${servicos}">
+        <td th:text="${servico.nome}"></td>
+        <td th:text="${servico.dificuldade}"></td>
         <td class="acoes-cell">
-            <a th:href="@{/clientes/ui/read/{id}(id=${cliente.id})}">Ver detalhes</a>
-            <a th:href="@{/clientes/ui/update/{id}(id=${cliente.id})}">Alterar</a>
-            <a th:href="@{/clientes/ui/delete/{id}(id=${cliente.id})}">Deletar</a>
+            <a th:href="@{/servicos/ui/read/{id}(id=${servico.id})}">Ver detalhes</a>
+            <a th:href="@{/servicos/ui/update/{id}(id=${servico.id})}">Alterar</a>
+            <a th:href="@{/servicos/ui/delete/{id}(id=${servico.id})}">Deletar</a>
         </td>
     </tr>
     </tbody>
 </table>
 
-<a th:href="@{/clientes/ui/pg-create}" class="btn-cadastrar">Cadastrar</a>
+<a th:href="@{/servicos/ui/pg-create}" class="btn-cadastrar">Cadastrar</a>
 
 </body>
 </html>

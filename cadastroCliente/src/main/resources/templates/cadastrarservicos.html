@@ -38,11 +38,11 @@
 </head>
 <body>
 
-<a th:href="@{/clientes/ui/readAll}" class="btn-navegacao">Voltar</a>
+<a th:href="@{/servicos/ui/readAll}" class="btn-navegacao">Voltar</a>
 <div class="form-container">
-    <h2>Novo Cliente</h2>
+    <h2>Novo Servico</h2>
 
-    <form th:action="@{/clientes/ui/create}" th:object="${clienteDTO}" method="POST">
+    <form th:action="@{/servicos/ui/create}" th:object="${servicoDTO}" method="POST">
 
         <input type="hidden" th:field="*{id}" />
 
@@ -52,33 +52,11 @@
         </div>
 
         <div class="form-group">
-            <label for="idade">Idade:</label>
-            <input type="number" id="idade" th:field="*{idade}" />
+            <label for="dificuldade">dificuldade:</label>
+            <input type="text" id="dificuldade" th:field="*{dificuldade}" />
         </div>
 
-        <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" th:field="*{email}" required />
-        </div>
-
-        <div class="form-group">
-            <label for="phone">Phone:</label>
-            <input type="number" id="phone" th:field="*{phone}"/>
-        </div>
-
-        <div class="form-group">
-            <label for="servico">Serviço:</label>
-            <select id="servico" th:field="*{servicos}" class="form-control">
-                <option value="">Selecione um serviço...</option>
-
-                <option th:each="servico : ${servicos}"
-                        th:value="${servico.id}"
-                        th:text="${servico.nome}">
-                </option>
-            </select>
-        </div>
-
-        <button type="submit" class="btn-enviar">Salvar Cliente</button>
+        <button type="submit" class="btn-enviar">Salvar Servico</button>
 
     </form>
 </div>

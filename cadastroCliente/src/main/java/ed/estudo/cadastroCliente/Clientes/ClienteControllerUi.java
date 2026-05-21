@@ -2,8 +2,6 @@ package ed.estudo.cadastroCliente.Clientes;
 
 import ed.estudo.cadastroCliente.Servicos.ServicosDTO;
 import ed.estudo.cadastroCliente.Servicos.ServicosService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +24,7 @@ public class ClienteControllerUi {
     public String readAllCliente(Model model){
         List<ClienteDTO> clienteDTOS = clienteService.readAllCliente();
         model.addAttribute("clientes",clienteDTOS);
+        model.addAttribute("titulo","Lista de Clientes");
         return "ListaClientes"; // tem que retornar o nome da pag que renderiza
     }
 
