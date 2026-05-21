@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Lista de Clientes</title>
-    <link rel="stylesheet" th:href="@{style.css}">
     <style>
         /* Configurações Gerais e Reset de Margens */
         * {
@@ -36,7 +35,7 @@
             max-width: 1200px;
         }
 
-        /* Container da Tabela para permitir rolagem horizontal em telas pequenas */
+        /* Container da Tabela */
         table {
             width: 100%;
             max-width: 1200px;
@@ -45,7 +44,7 @@
             border-radius: 8px;
             overflow: hidden; /* Garante que as bordas arredondadas funcionem nas pontas */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         /* Cabeçalho da Tabela */
@@ -60,6 +59,11 @@
             font-weight: 600;
             font-size: 0.95rem;
             letter-spacing: 0.5px;
+        }
+
+        /* Centraliza o título da coluna de ações */
+        th.acoes-header {
+            text-align: center;
         }
 
         /* Linhas e Células da Tabela */
@@ -84,32 +88,31 @@
             vertical-align: middle;
         }
 
+        /* Alinha os botões de ação no centro da célula */
+        td.acoes-cell {
+            text-align: center;
+            white-space: nowrap; /* Evita que os botões quebrem linha em telas médias */
+        }
+
         /* Estilização da coluna de Serviços e Alertas */
         span[th\:if] {
             font-weight: 500;
         }
 
-         /*Destaque para quando o cliente está sem serviço*/
-        tbody td span:contains("Cliente sem Servico") {
-            color: #e74c3c;
-            font-style: italic;
-            font-weight: normal;
-        }
-
-        /* Estilização dos Botões/Links de Ação */
+        /* Estilização dos Botões/Links de Ação na Tabela */
         td a {
             display: inline-block;
-            padding: 6px 12px;
+            padding: 6px 14px;
             margin: 2px 4px;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
             border-radius: 4px;
             transition: all 0.2s ease;
             cursor: pointer;
         }
 
-        /* Botão Ver Detalhes (Cinza/Azul sutil) */
+        /* Botão 1: Ver Detalhes (Cinza/Azul sutil) */
         td a:nth-child(1) {
             background-color: #ecf0f1;
             color: #7f8c8d;
@@ -120,7 +123,7 @@
             color: #2c3e50;
         }
 
-        /* Botão Alterar (Amarelo/Laranja de atenção) */
+        /* Botão 2: Alterar (Amarelo/Laranja de atenção) */
         td a:nth-child(2) {
             background-color: #f39c12;
             color: white;
@@ -130,14 +133,36 @@
             background-color: #d35400;
         }
 
-        /* Botão Deletar (Vermelho de perigo) */
-        td a[th\:href*="delete"], td a:nth-child(3) {
+        /* Botão 3: Deletar (Vermelho de perigo) */
+        td a:nth-child(3) {
             background-color: #e74c3c;
             color: white;
         }
 
-        td a[th\:href*="delete"]:hover, td a:nth-child(3):hover {
+        td a:nth-child(3):hover {
             background-color: #c0392b;
+        }
+
+        /* CSS do Botão do topo/rodapé: Cadastrar Novo Cliente */
+        .btn-cadastrar {
+            display: inline-block;
+            width: auto;
+            max-width: 1200px;
+            background-color: #2ecc71;
+            color: white;
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(46, 204, 113, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-cadastrar:hover {
+            background-color: #27ae60;
+            box-shadow: 0 4px 6px rgba(39, 174, 96, 0.4);
+            transform: translateY(-1px);
         }
 
         /* Responsividade Básica para telas menores */
@@ -159,42 +184,47 @@
     </style>
 </head>
 <body>
-    <h1>LISTA DE CLIENTES</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th>Servicos</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr th:each ="cliente: ${clientes}">
-                <td th:text="${cliente.nome}"> </td>
-                <td th:text="${cliente.idade}"> </td>
-                <td th:text="${cliente.email}"> </td>
-                <td th:text="${cliente.phone}"> </td>
-                <td>
+
+<h1>Lista de Clientes</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Serviços</th>
+        <th class="acoes-header">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cliente: ${clientes}">
+        <td th:text="${cliente.nome}"></td>
+        <td th:text="${cliente.idade}"></td>
+        <td th:text="${cliente.email}"></td>
+        <td th:text="${cliente.phone}"></td>
+        <td>
                     <span th:if="${cliente.servicos}">
                         <span th:text="${cliente.servicos.nome}"></span>,
                         Dificuldade:
                         <span th:text="${cliente.servicos.dificuldade}"></span>
                     </span>
-                    <span th:if="${cliente.servicos == null}">
-                        Cliente sem Servico !
+            <span th:if="${cliente.servicos == null}" style="color: #e74c3c; font-style: italic;">
+                        Cliente sem Serviço!
                     </span>
-                </td>
+        </td>
 
-                <td>
-                    <a th:href="@{/clientes/ui/read/{id}(id=${cliente.id})}">Ver detalhes</a>
-                    <a th:href="@{/clientes/ui/1/{id}(id=${cliente.id})}">Alterar</a>
-                    <a th:href="@{/clientes/ui/delete/{id}(id=${cliente.id})}">Deletar</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <a th:href="@{/clientes/ui/pg-create}" class="btn-voltar">Cadastrar</a>
+        <td class="acoes-cell">
+            <a th:href="@{/clientes/ui/read/{id}(id=${cliente.id})}">Ver detalhes</a>
+            <a th:href="@{/clientes/ui/update/{id}(id=${cliente.id})}">Alterar</a>
+            <a th:href="@{/clientes/ui/delete/{id}(id=${cliente.id})}">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/clientes/ui/pg-create}" class="btn-cadastrar">Cadastrar</a>
+
 </body>
 </html>

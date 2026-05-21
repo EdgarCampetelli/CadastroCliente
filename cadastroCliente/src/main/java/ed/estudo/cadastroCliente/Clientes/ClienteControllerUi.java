@@ -2,6 +2,8 @@ package ed.estudo.cadastroCliente.Clientes;
 
 import ed.estudo.cadastroCliente.Servicos.ServicosDTO;
 import ed.estudo.cadastroCliente.Servicos.ServicosService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +44,18 @@ public class ClienteControllerUi {
         }
         model.addAttribute("mensagem","Cliente nao encontrado !!!");
         return "ListaClientes";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateClienteID(@PathVariable Long id, Model model){
+        ClienteDTO clienteDTOID = clienteService.readClienteID(id);
+        if (clienteDTOID != null){
+            model.addAttribute("clienteDTO", clienteDTOID);
+            List<ServicosDTO> servicosDTOS = servicosService.readAllServico();
+            model.addAttribute("servicos",servicosDTOS);
+            return "cadastrarcliente";
+        }
+        return "redirect:/clientes/ui/readAll";
     }
 
     @GetMapping("/pg-create")

@@ -26,7 +26,7 @@ public class ClienteModel {
 
     private Integer idade;
 
-    private Integer phone;
+    private Long phone;
 
     @ManyToOne // MUITOS clientes para um servico
     @JoinColumn(name = "servicos_id") // Foreing Key
