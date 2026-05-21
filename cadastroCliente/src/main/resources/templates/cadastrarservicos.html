@@ -2,18 +2,43 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Cliente</title>
+    <title>Cadastro de Serviço</title>
     <style>
-        body { font-family: sans-serif; margin: 40px; background-color: #f4f6f9; }
-        .form-container { max-width: 400px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-        .form-group input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-        .btn-enviar { background-color: #3498db; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
-        .btn-enviar:hover { background-color: #2980b9; }
+        /* Configurações Gerais e Reset de Margens */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Título Principal (Estilo Ficha) */
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 3px solid #9b59b6; /* Cor roxa para identificar a área de Serviços */
+            padding-bottom: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Botão Voltar (Estilo de Navegação Limpo) */
         .btn-navegacao {
             display: inline-block;
-            align-self: flex-start; /* Mantém o botão alinhado à esquerda se usar flexbox no body */
+            align-self: flex-start;
             background-color: #ffffff;
             color: #2c3e50;
             padding: 10px 18px;
@@ -24,7 +49,8 @@
             border: 1.5px solid #bdc3c7;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transition: all 0.2s ease;
-            margin-bottom: 25px; /* Espaço caso você coloque a tabela de serviços logo abaixo */
+            margin-bottom: 25px;
+            width: auto;
         }
 
         .btn-navegacao:hover {
@@ -34,29 +60,110 @@
             box-shadow: 0 4px 6px rgba(44, 62, 80, 0.2);
             transform: translateY(-1px);
         }
+
+        /* Card do Formulário */
+        .form-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Blocos de cada campo */
+        .form-group {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #edeef2;
+            padding-bottom: 15px;
+        }
+
+        .form-group:nth-last-child(2) {
+            border-bottom: none; /* Remove a linha do último campo antes do botão */
+            padding-bottom: 5px;
+        }
+
+        /* Rótulos/Labels */
+        .form-group label {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Estilização dos Inputs */
+        .form-group input {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 1rem;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+            border: 1.5px solid #dcdde1;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        /* Efeito de foco ao clicar no campo (Sutilmente roxo) */
+        .form-group input:focus {
+            background-color: #ffffff;
+            border-color: #9b59b6;
+            box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.15);
+        }
+
+        /* Botão Salvar/Enviar (Verde de confirmação) */
+        .btn-enviar {
+            display: inline-block;
+            width: 100%;
+            background-color: #2ecc71;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(46, 204, 113, 0.2);
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+
+        .btn-enviar:hover {
+            background-color: #27ae60;
+            box-shadow: 0 4px 6px rgba(39, 174, 96, 0.3);
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body>
 
-<a th:href="@{/servicos/ui/readAll}" class="btn-navegacao">Voltar</a>
-<div class="form-container">
-    <h2>Novo Servico</h2>
+<div style="width: 100%; max-width: 600px;">
+    <a th:href="@{/servicos/ui/readAll}" class="btn-navegacao">← Voltar para Lista</a>
+</div>
 
+<h1>Cadastro de Serviço</h1>
+
+<div class="form-container">
     <form th:action="@{/servicos/ui/create}" th:object="${servicoDTO}" method="POST">
 
         <input type="hidden" th:field="*{id}" />
 
         <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" th:field="*{nome}" required />
+            <label for="nome">Nome do Serviço</label>
+            <input type="text" id="nome" th:field="*{nome}" placeholder="Ex: Consultoria em TI" required />
         </div>
 
         <div class="form-group">
-            <label for="dificuldade">dificuldade:</label>
-            <input type="text" id="dificuldade" th:field="*{dificuldade}" />
+            <label for="dificuldade">Grau de Dificuldade</label>
+            <input type="text" id="dificuldade" th:field="*{dificuldade}" placeholder="Ex: Alta, Média, Baixa" />
         </div>
 
-        <button type="submit" class="btn-enviar">Salvar Servico</button>
+        <button type="submit" class="btn-enviar">Salvar Dados do Serviço</button>
 
     </form>
 </div>
