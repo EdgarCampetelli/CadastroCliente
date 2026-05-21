@@ -28,7 +28,8 @@ A aplicação é um sistema de gerenciamento Full Stack que permite o cadastro, 
 
 <img width="1875" height="952" alt="image" src="https://github.com/user-attachments/assets/992d1735-5bb6-44d5-881a-384d0cacdbb1" />
 <img width="1876" height="954" alt="image" src="https://github.com/user-attachments/assets/9923632b-5204-49cf-994f-72aca6180e47" />
-<img width="1875" height="954" alt="image" src="https://github.com/user-attachments/assets/815fe634-616e-4e3b-9f30-0d58efa76d0c" />
+<img width="1875" height="955" alt="image" src="https://github.com/user-attachments/assets/63f5277e-e50a-4d68-b7d6-24e2f23d383d" />
+
 
 ---
 
