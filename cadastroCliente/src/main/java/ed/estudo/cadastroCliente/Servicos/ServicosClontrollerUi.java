@@ -1,8 +1,5 @@
 package ed.estudo.cadastroCliente.Servicos;
 
-import ed.estudo.cadastroCliente.Clientes.ClienteDTO;
-import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

@@ -1,9 +1,12 @@
 package ed.estudo.cadastroCliente.Servicos;
 
+import ed.estudo.cadastroCliente.Clientes.*;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -11,10 +14,12 @@ import java.util.stream.Collectors;
 public class ServicosService {
 
     private final ServicosRepository servicosRepository;
+    private final ClienteRepository clienteRepository;
     private final ServicosMapper servicosMapper;
 
-    public ServicosService(ServicosRepository servicosRepository, ServicosMapper servicosMapper) {
+    public ServicosService(ServicosRepository servicosRepository, ClienteRepository clienteRepository, ServicosMapper servicosMapper) {
         this.servicosRepository = servicosRepository;
+        this.clienteRepository = clienteRepository;
         this.servicosMapper = servicosMapper;
     }
 
@@ -47,6 +52,13 @@ public class ServicosService {
     }
 
     public void deleteServicoID(Long id){
-        servicosRepository.deleteById(id);
+        Optional<ServicosModel> servicosModels = servicosRepository.findById(id);
+        if (servicosModels.isPresent()){
+            for (ClienteModel cliente: servicosModels.get().getClientes()){
+                cliente.setServicos(null);
+                clienteRepository.save(cliente);
+            }
+            servicosRepository.deleteById(id);
+        }
     }
 }
